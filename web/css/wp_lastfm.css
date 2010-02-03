@@ -1,0 +1,23 @@
+.lfm                   {border: 2px solid white}
+
+.lfm-artist-row-small  {height:38px}
+.lfm-artist-small      {width:34px; height:34px; border: 2px solid white; float:left}
+.lfm-artist-row-medium {height:68px}
+.lfm-artist-medium     {width:64px; height:64px; border: 2px solid white; float:left}
+.lfm-artist-row-large  {height:130px}
+.lfm-artist-large      {width:126px; height:126px; border: 2px solid white; float:left}
+
+.lfm-recent-tracks             {width:408px}
+.lfm-recent-track-small        {width:408px; height:36px}
+.lfm-recent-track-image-small  {width:34px; height:36px; float:left}
+.lfm-recent-track-info-small   {width:364px; height:36px; font-size:0.8em; line-height:1.1em; padding-left:10px; float:right}
+.lfm-recent-track-medium       {width:408px; height:66px}
+.lfm-recent-track-image-medium {width:64px; height:66px; float:left}
+.lfm-recent-track-info-medium  {width:334px; height:66px; font-size:1em; line-height:1.3em; padding-left:10px; float:right}
+.lfm-recent-track-large        {width:408px; height:128px}
+.lfm-recent-track-image-large  {width:126px; height:128px; float:left}
+.lfm-recent-track-info-large   {width:272px; height:128px; font-size:1.4em; line-height:1.7em; padding-left:10px; float:right}
+
+.lfm-image-small  {width:34px}
+.lfm-image-medium {width:64px}
+.lfm-image-large  {width:126px}

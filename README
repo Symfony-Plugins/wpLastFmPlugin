@@ -1,0 +1,102 @@
+# wpLastFm Plugin #
+
+The `wpLastFmPlugin` is a Symfony plugin that retrieves information from last.fm using their API.
+
+It comes with default templates for quick and easy display of standard last.fm methods (getRecentTracks and getTopArtists) but can also be used to access any other method from the 
+[last.fm API](http://www.last.fm/api "last.fm"). Before you can use this plugin you need to apply for an API key on the [last.fm](http://www.last.fm/api/account "last.fm") website.
+
+# Installation #
+
+  * Install the plugin
+
+        $ ./symfony plugin:install wpLastFmPlugin
+
+  * Next you have to change both the API key that you received from last.fm and your last.fm username in the `app.yml` of the plugin:
+
+        [yml]
+        # plugins/wpLastFmPlugin/config/app.yml
+        all:
+          wp_lastfm:
+            web_dir:   /wpLastFmPlugin
+            api_key:   xxxxxx
+            username:  xxxxxx
+
+  * If you want to use one of the default templates you have to enable the lastFm module in your `settings.yml`
+
+        [php]
+          all:
+          enabled_modules:        [default, …, wpLastFm]
+
+  * Clear you cache
+
+        $ ./symfony cc
+
+
+# Using a default template #
+
+In the template of the page where you want to display your top played artists just do the following:
+
+    [php]
+    include_component('wpLastFm', 'topArtists');
+
+You can also show your last played tracks by including the following component:
+
+    [php]
+    include_component('wpLastFm', 'recentTracks');
+
+## Modify the displayed results ##
+
+You can pass parameters to both components to modify the displayed results.
+
+The topArtists component accepts the following parameters:
+
+  * `count`: number of results you want to show
+  * `rows`: number of vertical rows you want to use to display your results
+  * `image_size`: size of the artist thumbnail (value can be SMALL, MEDIUM or LARGE)
+
+        [php]
+        include_component('wpLastFm', 'topArtists', array('count' => 18, 'rows' => 3, 'image_size' => 'SMALL'));
+
+The topArtists component accepts the following parameters:
+
+  * `count`: number of results you want to show
+  * `image_size`: size of the artist thumbnail (value can be SMALL, MEDIUM or LARGE)
+
+        [php]
+        include_component('wpLastFm', 'recentTracks', array('count' => 3, 'image_size' => 'MEDIUM'));
+
+If you are not happy about the used colors just override the css classes in the main css of your application.
+
+# Retrieve and display data manually #
+
+To get your data from last.fm just look up the name of the method in the [last.fm API](http://www.last.fm/api "last.fm") and pass it to the get method (in this example we get the top tracks of a user):
+
+    [php]
+    // Retrieve the top tracks for the user that we have set in the app.yml
+    $lastfm = new wpLastFm();
+    $result = $lastfm->get('user.getTopTracks');
+
+    // Retrieve the top tracks of a different last.fm user
+    $lastfm = new wpLastFm('kielabokkie');
+    $result = $lastfm->get('user.getTopTracks');
+
+This will return a SimpleXML object containing the result of your query. So to get the information of the tracks in this example we would do the following:
+
+    [php]
+    // Retrieve the top tracks for the user that we have set in the app.yml
+    $lastfm = new wpLastFm();
+    $result = $lastfm->get('user.getTopTracks');
+    $tracks = $result->toptracks->track;
+
+    // Iterate through the $tracks object to get the individual results
+    foreach($tracks AS $track) {
+      // Do something with the track attributes here
+      echo 'name: ' . $track->name . '<br/>';
+    }
+
+Some methods in the last.fm API also accept additional parameters. We can make use of these parameters by passing them to the get method in an array:
+
+    [php]
+    // Retrieve the top tracks of the last seven days
+    $lastfm = new wpLastFm();
+    $result = $lastfm->get('user.getTopTracks', array('period' => '7day'));

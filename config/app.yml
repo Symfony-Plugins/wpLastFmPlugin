@@ -1,0 +1,5 @@
+all:
+  wp_lastfm:
+    web_dir:  /wpLastFmPlugin
+    api_key:  xxxxxx
+    username: xxxxxx
