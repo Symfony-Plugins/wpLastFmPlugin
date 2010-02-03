@@ -11,6 +11,20 @@ It comes with default templates for quick and easy display of standard last.fm m
 
         $ ./symfony plugin:install wpLastFmPlugin
 
+  * Activate the plugin in the `config/ProjectConfiguration.class.php`
+  
+        [php]
+        class ProjectConfiguration extends sfProjectConfiguration
+        {
+          public function setup()
+          {
+            $this->enablePlugins(array(
+              'wpLastFmPlugin',
+              '...'
+            ));
+          }
+        }
+
   * Next you have to change both the API key that you received from last.fm and your last.fm username in the `app.yml` of the plugin:
 
         [yml]
@@ -25,7 +39,7 @@ It comes with default templates for quick and easy display of standard last.fm m
 
         [php]
           all:
-          enabled_modules:        [default, …, wpLastFm]
+          enabled_modules:        [default, ..., wpLastFm]
 
   * Clear you cache
 

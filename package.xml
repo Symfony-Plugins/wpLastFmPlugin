@@ -12,8 +12,8 @@
  </lead>
  <date>2010-02-03</date>
  <version>
-   <release>0.0.1</release>
-   <api>0.0.1</api>
+   <release>0.0.2</release>
+   <api>0.0.2</api>
  </version>
  <stability>
   <release>beta</release>
@@ -35,8 +35,8 @@
     <name>symfony</name>
     <channel>pear.symfony-project.com</channel>
     <min>1.1.0</min>
-    <max>1.3.0</max>
-    <exclude>1.3.0</exclude>
+    <max>1.5.0</max>
+    <exclude>1.5.0</exclude>
    </package>
   </required>
  </dependencies>
@@ -45,5 +45,21 @@
  </phprelease>
 
  <changelog>
- <release><version><release>=0.0.1</release><api>=0.0.1</api></version><stability><release>=beta</release><api>=beta</api></stability><license uri="http://www.symfony-project.com/license">MIT</license><date>2010-02-03</date><notes>=First beta release</notes></release></changelog>
+  <release>
+   <version>
+    <release>0.0.2</release>
+    <api>0.0.2</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <date>2010-02-03</date>
+   <notes>
+     * Made the plugin available for Symfony 1.3/1.4
+   </notes>
+  </release>
+ </changelog>
+
 </package>
